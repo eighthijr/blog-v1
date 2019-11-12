@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
   <div class="container py-lg-3">
+
     <button class="navbar-toggler" 
             type="button" 
             data-toggle="collapse" 
@@ -9,28 +10,38 @@
             aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">Navbar</a>
+
+    <!-- Home Button -->
+    <a class="navbar-brand" href="{{ "/" | relative_url }}">
+      {{ site.title | escape }}
+    </a>
+
     <form class="form-inline my-2 my-lg-0 order-lg-3">
       <button class="btn btn-outline-success my-2 my-sm-0" 
               type="submit">
         <i class="fas fa-search"></i>
       </button>
     </form>
+
     <div class="collapse navbar-collapse justify-content-lg-end order-lg-2 mr-lg-3" id="navbarSupportedContent">
+      {%- if site.pages.size > 0 -%}
       <ul class="navbar-nav">
+        {%- for item in site.data.nav -%}
         <li class="nav-item">
-          <a class="nav-link text-uppercase" href="#">Pages</a>
+          {%- if item.url == page.url -%}
+          <a class="nav-link active text-uppercase" href="{{ item.url }}">
+            {{ item.title }}
+          </a>
+          {%- else -%}
+          <a class="nav-link text-uppercase" href="{{ item.url }}">
+            {{ item.title }}
+          </a>
+          {%- endif -%}
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase" href="#">Components</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase" href="#">Docs</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase" href="#">Style</a>
-        </li>
+        {%- endfor -%}
       </ul>
+      {%- endif -%}
     </div>
+
   </div>
 </nav>
