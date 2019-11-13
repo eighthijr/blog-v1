@@ -13,6 +13,11 @@ layout: default
     box-shadow: .5rem .5rem .5rem lightblue;
     cursor: pointer;
   }
+  .card-img-placeholder {
+    width: 100%;
+    height: 20vh;
+    max-height: 250px;
+  }
 </style>
 
 {%- if site.posts.size > 0 -%}
@@ -50,7 +55,9 @@ layout: default
     <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
       <div class="card">
         {%- if post.image_id -%}
-        <img class="card-img round-0" src="https://source.unsplash.com/{{ post.image_id }}">
+        <img class="card-img rounded-0" src="https://source.unsplash.com/{{ post.image_id }}">
+        {%- else -%}
+        <img class="card-img card-img-placeholder">
         {%- endif -%}
         <div class="card-body">
           <h6 class="card-subtitle text-muted mb-3">
